@@ -27,7 +27,7 @@ spec:
             protocol: TCP
         env:
           - name: DD_API_KEY
-            value: "cb5e9115e799b027ededf1a375a00f1e"
+            value: "<API_KEY>"
           - name: DD_SITE
             value: "datadoghq.com"
           - name: DD_COLLECT_KUBERNETES_EVENTS
