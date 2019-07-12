@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis
+  annotations:
+    ad.datadoghq.com/redis.check_names: '["redisdb"]'
+    ad.datadoghq.com/redis.init_configs: '[{}]'
+    ad.datadoghq.com/redis.instances: |
+      [
+        {
+          "host": "%%host%%",
+          "port":"6379",
+          "password":"%%env_REDIS_PASSWORD%%"
+        }
+      ]
+    ad.datadoghq.com/redis.logs: [{"source":"redis","service":"redis"}]
+  labels:
+    name: redis
+spec:
+  containers:
+    - name: master
+      image: k8s.gcr.io/redis:v1
+
+      ports:
+        - containerPort: 6379
